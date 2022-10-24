@@ -6,7 +6,7 @@ module Calendarific
       params[:country] = Country::Client.symbol if params[:country].nil?
       params[:year] = Date.current.year if params[:year].nil?
 
-      Request.connection("holidays", params)
+      Request.connection("get", "holidays", params)
     end
   end
 end

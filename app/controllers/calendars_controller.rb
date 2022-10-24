@@ -1,9 +1,16 @@
 class CalendarsController < ApplicationController
   include Calendarific
+  
+  before_action :set_params
 
   def holidays
-    options = params.permit(:country, :year, :type).to_h
-    @holidays = Calendarific::Client.holidays(options)
+    @holidays = Calendarific::Client.holidays(@options)
     render json: @holidays
+  end
+
+  private
+
+  def set_params
+    @options = params.permit(:country, :year, :type).to_h
   end
 end

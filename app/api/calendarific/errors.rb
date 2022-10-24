@@ -1,6 +1,6 @@
 module Calendarific
   class Errors
-    def self.message(code)
+    def self.status(code)
       case code
       when 401
         return "Unauthorized"
