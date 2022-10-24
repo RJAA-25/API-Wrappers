@@ -1,24 +1,41 @@
-# README
+# API Wrapper
+This project was built to practice creating customized wrappers for third-party APIs using different tools.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### [Calendarific API](https://calendarific.com/api-documentation)
+Calendarific provides data by passing an `api_key` token in the request parameters. In this project, request-response cycles were handled using `Net::HTTP`.
 
-Things you may want to cover:
+Endpoints created: 
 
-* Ruby version
+`/calendars/holidays`
 
-* System dependencies
+- returns the list of holidays in a certain country
+- accepts the following options: `country`, `year`, `type`
+- `country` will default to the country code provided by [Country API](http://country.is/) if not provided
+- `year` will default to the current year of the date accessed if not provided
+- `type` is optional and will accept inputs among `national`, `local`, `religious`, `observance`
 
-* Configuration
+### [Exchange Rates Data API](https://apilayer.com/marketplace/exchangerates_data-api#documentation-tab)
+Exchange Rates Data from APILayer provides data by passing an `apikey` token in the request headers. In this project, request-response cycles were handled using `Faraday`.
 
-* Database creation
+Endpoints created:
 
-* Database initialization
+`exchange-rates/symbols`
 
-* How to run the test suite
+- returns the list of three-letter currency codes of different countries
 
-* Services (job queues, cache servers, search engines, etc.)
+`exchange-rates/latest`
 
-* Deployment instructions
+- returns the real-time exchange rate data
+- accepts the following options: `base`, `symbols`
+- both `base` and `symbols` are optional
 
-* ...
+`exchange-rates/convert`
+
+- returns the amount when converted from one currency to another
+- accepts the following options: `date`, `amount`, `from`, `to`
+- requires `amount` for the basis of currency conversion
+- requires `from` and `to` and must be a three-letter currency code
+
+### Tool Documentation
+- [Net::HTTP](https://ruby-doc.org/stdlib-3.1.2/libdoc/net/http/rdoc/Net/HTTP.html)
+- [Faraday](https://lostisland.github.io/faraday/)
