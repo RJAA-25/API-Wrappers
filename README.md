@@ -8,12 +8,13 @@ Calendarific provides data by passing an `api_key` token in the request paramete
 
 `/calendars/holidays`
 ```
+options = { country: "US", year: 2012 }
 @holidays = Calendarific::Client.holidays(options)
 ```
 
 - returns the list of holidays in a certain country
 - accepts the following options: `country`, `year`, `type`
-- `country` will default to the country code provided by [Country API](http://country.is/) if not provided
+- `country` will default to the country code provided by [Country API](http://country.is/) if not provided (ISO-3166 format)
 - `year` will default to the current year of the date accessed if not provided
 - `type` is optional and will accept inputs among `national`, `local`, `religious`, `observance`
 
@@ -22,6 +23,7 @@ Exchange Rates Data from APILayer provides data by passing an `apikey` token in 
 
 #### Usage:
 ```
+options = { base: "USD" }
 @exchange_rates = ExchangeRates::Client.new
 ```
 
@@ -39,7 +41,7 @@ Exchange Rates Data from APILayer provides data by passing an `apikey` token in 
  ```
 - returns the real-time exchange rate data
 - accepts the following options: `base`, `symbols`
-- both `base` and `symbols` are optional
+- both `base` and `symbols` are optional (must be a three-letter currency code)
 
 `exchange-rates/convert`
 ```
